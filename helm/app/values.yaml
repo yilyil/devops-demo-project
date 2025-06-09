@@ -5,11 +5,11 @@
 replicaCount: 2
 
 image:
-  githubID: deepakkr35
-  repository: yiliyil/demo-java-app
+  githubID: yiliyil
+  repository: demo-java-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: V1.0
+  tag: V1.0-amd64
 
 appName: demo-java-app
 
