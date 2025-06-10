@@ -30,7 +30,7 @@ public class DemoApplication {
         logger.info("INFO level log message");
         logger.debug("DEBUG level log message");
         logger.error("ERROR level log message");
-        model.addAttribute("title", "Modification par Yilizire pour le projet");
+        model.addAttribute("title", "Modification par Yilizire");
         model.addAttribute("msg", "Implemented using DevOps.");
         return "index";
     }
