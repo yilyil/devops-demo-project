@@ -5,10 +5,11 @@
 replicaCount: 2
 
 image:
-  repository: yiliyil/demo-java-app
+image:
+  githubID: yiliyil
+  repository: demo-java-app
+  tag: V1.0-amd64
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: V1.0
 
 appName: demo-java-app
 
@@ -71,18 +72,30 @@ resources: {}
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  limits:
+     cpu: 1000m
+     memory: 2Gi
+  requests:
+     cpu: 500m
+     memory: 1Gi
 
 livenessProbe:
+  exec:
+    command: ["curl", "localhost:9200/_cluster/health"]
+  initialDelaySeconds: 60  # Au lieu de 30
+  timeoutSeconds: 5        # Au lieu de 1
+  periodSeconds: 20        # Au lieu de 10
+  failureThreshold: 5      # Au lieu de 3
   httpGet:
     path: /
     port: http
 readinessProbe:
+  exec:
+    command: ["curl", "localhost:9200/_cluster/health"]
+  initialDelaySeconds: 30
+  timeoutSeconds: 5        # Au lieu de 1
+  periodSeconds: 10
+  failureThreshold: 5      # Au lieu de 3
   httpGet:
     path: /
     port: http
