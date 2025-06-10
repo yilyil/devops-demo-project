@@ -30,3 +30,9 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   name: ""
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: false
